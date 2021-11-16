@@ -5,7 +5,7 @@ import styled from "styled-components";
 const ButtonStyle = styled.div`
   margin-top: 2rem;
   .button {
-    font-size: 2.2rem;
+    font-size: 1.7rem;
     background-color: black;
     padding: 0.7rem 2rem;
     border-radius: 8px;
@@ -13,17 +13,19 @@ const ButtonStyle = styled.div`
     border: 5px solid white;
     color: white;
     text-decoration: none;
-    padding: 1.5rem;
+    padding: 1rem;
     width: 100%;
     text-align: center;
+    transition-duration: 500ms;
   }
 
   .button:hover {
-    transition-duration: 400ms;
-    color: purple;
+    transition-duration: 500ms;
+    color: #b946ea;
+    transform: scale(1.1);
   }
   @media only screen and (max-width: 768px) {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 `;
 

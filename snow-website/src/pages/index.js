@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
-
+import NavMenu from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 
 import AboutSection from "../components/AboutSection/AboutSection";
 
 import KoncertySection from "../components/Koncerty/KoncertySection";
-import NavMenu from "../components/Navbar";
+
 import GalerySection from "../components/Galery/GalerySection";
 
 const Home = () => {

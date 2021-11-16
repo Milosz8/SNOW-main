@@ -5,10 +5,11 @@ import AboutImg from "../../images/onas1.jpg";
 import styled from "styled-components";
 
 const AboutSectionStyle = styled.div`
-  padding: 10rem 0;
+  padding: 5rem 0;
   box-sizing: border-box;
   background-color: black;
   color: white;
+  max-height: 800px;
   .container {
     display: flex;
     align-items: center;
@@ -19,25 +20,26 @@ const AboutSectionStyle = styled.div`
     margin: 0 auto;
   }
   img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+
     object-fit: contain;
     border: 5px solid white;
     min-width: 160px;
-    margin-top: 4.8rem;
+    margin: auto;
   }
   .aboutSection_left,
   .aboutSection_right {
     flex: 1;
+    align-items: center;
   }
   .section-title {
     text-align: left;
   }
   .para {
     max-width: 600px;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     margin-right: 3rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 2rem;
     text-align: left;
   }
@@ -45,8 +47,9 @@ const AboutSectionStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 3rem;
+
+    margin-top: 1.5rem;
   }
   @media only screen and (max-width: 950px) {
     .aboutSection_left {
@@ -57,6 +60,7 @@ const AboutSectionStyle = styled.div`
     }
   }
   @media only screen and (max-width: 768px) {
+    max-height: 1200px;
     .container {
       flex-direction: column;
       text-align: center;
@@ -76,7 +80,9 @@ const AboutSectionStyle = styled.div`
       margin-top: 2rem;
       font-size: 1.4rem;
     }
-
+    img {
+      width: 80%;
+    }
     .aboutSection_buttons {
       flex-direction: column;
       gap: 0;

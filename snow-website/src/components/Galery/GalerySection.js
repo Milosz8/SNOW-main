@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import Img1 from "../../images/carousel1.jpg";
 import Img2 from "../../images/carousel2.jpg";
@@ -12,91 +12,26 @@ import Img9 from "../../images/carousel8.jpg";
 import Img10 from "../../images/carousel9.jpg";
 import Img11 from "../../images/carousel11.jpg";
 import Img12 from "../../images/carousel10.jpg";
-import { MdClose } from "react-icons/md";
+
+import Gallery from "react-photo-gallery";
+import Carousel, { Modal, ModalGateway } from "react-images";
 
 const GalleryStyles = styled.div`
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
-  column-count: 3;
-  -webkit-column-width: 33%;
-  -moz-column-width: 33%;
-  column-width: 33%;
-  padding: 0 12px;
-  background-color: black;
+  padding: 0 15px;
 
-  .pics {
+  img {
     -webkit-transition: all 350ms ease;
     transition: all 350ms ease;
     cursor: pointer;
-    margin-bottom: 12px;
-    img {
-      width: 100%;
-
-      filter: grayscale(100%);
-    }
-  }
-  .pics:hover {
-    filter: opacity(0.7);
-    img {
-      filter: grayscale(0%);
-    }
-  }
-  @media screen and (max-width: 991px) {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-  }
-  @media screen and (max-width: 480px) {
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
-    column-count: 1;
-    -webkit-column-width: 100%;
-    -moz-column-width: 100%;
-    column-width: 100%;
-  }
-  .model {
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    transition: opacity 2s ease, visibility 2s ease, transform 0.5s ease-in-out;
-    visibility: hidden;
-    opacity: 0;
-    transform: scale(0);
-    overflow: hidden;
-    z-index: 999;
-  }
-  .model.open {
-    visibility: visible;
-    opacity: 1;
+    filter: grayscale(100%);
+    transition-duration: 500ms;
     transform: scale(1);
-  }
-  .model img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
-    display: block;
-    line-height: 0;
-    box-sizing: border-box;
-    padding: 20px 0 20px;
-    margin: 0 auto;
-  }
-  .model.open svg {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 2rem;
-    height: 2rem;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    cursor: pointer;
+    padding: 10px 15px;
+
+    &:hover {
+      filter: grayscale(0%);
+      transform: scale(1.01);
+    }
   }
 `;
 
@@ -104,78 +39,109 @@ export default function GalerySection() {
   let data = [
     {
       id: 1,
-      imgSrc: Img1,
+      src: Img1,
+      width: 3,
+      height: 2,
     },
     {
       id: 2,
-      imgSrc: Img2,
+      src: Img2,
+      width: 3,
+      height: 4.5,
     },
     {
       id: 3,
-      imgSrc: Img3,
+      src: Img3,
+      width: 3,
+      height: 2,
     },
     {
       id: 4,
-      imgSrc: Img4,
+      src: Img4,
+      width: 3,
+      height: 2,
     },
     {
       id: 5,
-      imgSrc: Img5,
+      src: Img5,
+      width: 3,
+      height: 2,
     },
     {
       id: 6,
-      imgSrc: Img6,
+      src: Img6,
+      width: 3,
+      height: 2,
     },
     {
       id: 7,
-      imgSrc: Img7,
+      src: Img7,
+      width: 3,
+      height: 2,
     },
     {
       id: 8,
-      imgSrc: Img8,
+      src: Img8,
+      width: 3,
+      height: 4.5,
     },
     {
       id: 9,
-      imgSrc: Img9,
+      src: Img9,
+      width: 3,
+      height: 2,
     },
     {
       id: 10,
-      imgSrc: Img10,
+      src: Img10,
+      width: 3,
+      height: 4.5,
     },
     {
       id: 11,
-      imgSrc: Img11,
+      src: Img11,
+      width: 3,
+      height: 4.5,
     },
     {
       id: 12,
-      imgSrc: Img12,
+      src: Img12,
+      width: 3,
+      height: 2,
     },
   ];
-  const [model, setModel] = useState(false);
-  const [tempimgSrc, setTempImgSrc] = useState("");
 
-  const getImg = (imgSrc) => {
-    setTempImgSrc(imgSrc);
-    setModel(true);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [viewerIsOpen, setViewerIsOpen] = useState(false);
+
+  const openLightbox = useCallback((event, { photo, index }) => {
+    setCurrentImage(index);
+    setViewerIsOpen(true);
+  }, []);
+
+  const closeLightbox = () => {
+    setCurrentImage(0);
+    setViewerIsOpen(false);
   };
+
   return (
     <>
-      <GalleryStyles className="gallery">
-        <div className={model ? "model open" : "model"}>
-          <img src={tempimgSrc} alt="tempImg" />
-          <MdClose onClick={() => setModel(false)} />
-        </div>
-        {data.map((item, index) => {
-          return (
-            <div
-              className="pics"
-              key={index}
-              onClick={() => getImg(item.imgSrc)}
-            >
-              <img src={item.imgSrc} alt="img" />
-            </div>
-          );
-        })}
+      <GalleryStyles>
+        <Gallery photos={data} onClick={openLightbox} />
+        <ModalGateway>
+          {viewerIsOpen ? (
+            <Modal onClose={closeLightbox}>
+              <Carousel
+                currentIndex={currentImage}
+                views={data.map((x) => ({
+                  ...x,
+                  srcset: x.srcSet,
+                  caption: x.title,
+                }))}
+              />
+            </Modal>
+          ) : null}
+        </ModalGateway>
       </GalleryStyles>
     </>
   );

@@ -5,7 +5,7 @@ const koncerty = [
     title:
       "Coroczny festival muzyczny odbywający się na pograniczu trójmiasta brzeszczańskiego tzn: Ośrodek Sazam Brzeszcze",
     org: "16.09.2021 Godzina: 15:00-???",
-    desc: "Co w stawie plumko",
+    desc: "...Co w stawie plumko",
   },
   {
     id: 2,

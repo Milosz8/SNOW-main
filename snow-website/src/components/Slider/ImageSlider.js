@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SliderData } from "./SliderData";
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import { MdArrowBack, MdArrowForward } from "react-icons/md";
 import styled from "styled-components";
 
 const SectionStyle = styled.section`
   position: relative;
-  height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   .slide {
     opacity: 0;
     filter: grayscale(0) blur(5px);
@@ -21,12 +22,11 @@ const SectionStyle = styled.section`
     transform: scale(1.08);
   }
   .imageStyle {
-    width: 100%;
-    height: 40rem;
+    width: 90%;
     border-radius: 20px;
     object-fit: cover;
     /* border: 5px solid white; */
-    min-width: 160px;
+    min-width: 260px;
     /* filter: grayscale(1) blur(1px); */
   }
   .right-arrow {
@@ -56,18 +56,29 @@ const SectionStyle = styled.section`
   .left-arrow:hover {
     transition-duration: 500ms;
     opacity: 1;
-    filter: drop-shadow(16px 16px 20px white);
+    filter: drop-shadow(-16px 16px 20px white);
+    color: purple;
   }
   .right-arrow:hover {
     transition-duration: 500ms;
     opacity: 1;
     filter: drop-shadow(16px 16px 20px white);
+    color: purple;
+  }
+  @media only screen and (max-width: 768px) {
+    padding-top: 2rem;
   }
 `;
 
 export default function ImageSlider({ slides }) {
   const [current, setCurrent] = useState(0);
   const length = slides.length;
+
+  useEffect(() => {
+    let timer = setTimeout(nextSlide, 10000);
+    return () => clearTimeout(timer);
+  }, [current]);
+
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
@@ -80,12 +91,11 @@ export default function ImageSlider({ slides }) {
     return null;
   }
 
-  //   setTimeout(nextSlide, 10000);
-
   return (
     <SectionStyle className="slider">
-      <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-      <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+      <MdArrowBack className="left-arrow" onClick={prevSlide} />
+      <MdArrowForward className="right-arrow" onClick={nextSlide} />
+      <MdArrowBack />
       {SliderData.map((slide, index) => {
         return (
           <div

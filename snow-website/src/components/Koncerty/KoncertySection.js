@@ -8,33 +8,35 @@ import koncerty from "./koncerty";
 import background from "../../images/back1.jpg";
 
 const KoncertySectionStyles = styled.div`
-  padding: 10rem 0;
+  padding: 5.5rem 0;
   text-align: center;
   color: white;
   background-image: url(${background});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  font-family: "Special Elite";
+  font-family: "Encode Sans Expanded";
+  height: 800px;
 
   .koncerty__wrapper {
     position: relative;
     max-width: 700px;
     margin: 0 auto;
     color: white;
-    font-family: "Special Elite";
+
+    font-family: "Encode Sans Expanded";
   }
   .koncerty__info {
     width: 100%;
     height: fit-content;
     padding: 3rem;
-    background-color: rgba(100, 100, 100, 0.5);
+    /* background-color: rgba(100, 100, 100, 0.3); */
 
     color: white;
     border-radius: 12px;
     margin-top: 5rem;
     p {
-      font-family: "Special Elite";
+      font-family: "Encode Sans Expanded";
     }
   }
   .koncerty__desc {
@@ -44,14 +46,14 @@ const KoncertySectionStyles = styled.div`
   }
   .koncerty__name {
     margin-top: 4rem;
-    font-family: "Special Elite";
-    font-size: 2.2rem;
+    font-family: "Encode Sans Expanded";
+    font-size: 1.2rem;
     opacity: 1;
   }
   .koncerty__title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin-top: 0.3rem;
-    font-family: "Special Elite";
+    font-family: "Encode Sans Expanded";
     color: white;
     opacity: 1;
   }
@@ -60,29 +62,36 @@ const KoncertySectionStyles = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 3rem;
 
     svg {
       width: 30px;
+
       pointer-events: none;
     }
     .next,
     .prev {
-      margin: 0 0.5rem;
+      margin: 0 3rem;
       width: fit-content;
-      background-color: rgba(100, 100, 100, 0.5);
-
+      transition-duration: 500ms;
       padding: 0.5rem 2rem;
       border-radius: 8px;
       cursor: pointer;
     }
   }
   .next:hover {
-    color: purple;
     transition-duration: 500ms;
+    opacity: 1;
+
+    color: #b946ea;
+    transform: scale(1.2);
   }
   .prev:hover {
-    color: purple;
     transition-duration: 500ms;
+    opacity: 1;
+
+    color: #b946ea;
+    transform: scale(1.2);
   }
   .fade-enter {
     opacity: 0;
@@ -91,7 +100,7 @@ const KoncertySectionStyles = styled.div`
   .fade-enter-active {
     opacity: 1;
     transform: scale(1);
-    transition: 250ms ease-in opacity;
+    transition: 250ms ease opacity;
     transition-property: opacity, transform;
   }
   .fade-exit {
@@ -100,8 +109,8 @@ const KoncertySectionStyles = styled.div`
   }
   .fade-exit-active {
     opacity: 0;
-    transform: scale(0.96);
-    transition: 250ms ease-in opacity;
+    transform: scale(0.86);
+    transition: 250ms ease opacity;
     transition-property: opacity, transform;
   }
 `;
@@ -124,10 +133,11 @@ export default function KoncertySection() {
       setActiveIndex((oldIndex) => oldIndex + 1);
     }
   }
+
   return (
     <KoncertySectionStyles id="Koncerty">
       <div className="container">
-        <SectionTitle heading="Koncerty" subheading="zobacz gdzie gramy:" />
+        <SectionTitle heading="Koncerty" subheading="" />
         <div className="koncerty__wrapper">
           <SwitchTransition>
             <CSSTransition key={activeSlide.id} timeout={300} classNames="fade">

@@ -5,37 +5,45 @@ import { MdArrowBack, MdArrowForward } from "react-icons/md";
 import SectionTitle from "../components/Koncerty/KoncertySectionTitle";
 import PText from "../components/Koncerty/PText";
 import koncerty from "../components/Koncerty/koncerty";
-import background from "../../src/images/back1.jpg";
+
 import Video from "../videos/snowvideo1.mp4";
 
+import Sidebar from "../components/Sidebar";
+import NavMenu from "../components/Navbar";
+import ContactBanner from "../components/Koncerty/ContactBanner";
+
 const KoncertySectionStyles = styled.div`
-  padding: 10rem 0;
+  padding: 6.5rem 0;
+
   text-align: center;
+
   color: white;
-  //background-image: url(${background});
-  // background-repeat: no-repeat;
-  //background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
-  font-family: "Special Elite";
+
+  font-family: "Encode Sans Expanded";
+  height: 800px;
 
   .koncerty__wrapper {
     position: relative;
     max-width: 700px;
     margin: 0 auto;
     color: white;
-    font-family: "Special Elite";
+
+    font-family: "Encode Sans Expanded";
   }
   .koncerty__info {
     width: 100%;
     height: fit-content;
     padding: 3rem;
-    background-color: rgba(100, 100, 100, 0.5);
+    /* background-color: rgba(100, 100, 100, 0.3); */
 
     color: white;
     border-radius: 12px;
     margin-top: 5rem;
     p {
-      font-family: "Special Elite";
+      font-family: "Encode Sans Expanded";
     }
   }
   .koncerty__desc {
@@ -45,14 +53,14 @@ const KoncertySectionStyles = styled.div`
   }
   .koncerty__name {
     margin-top: 4rem;
-    font-family: "Special Elite";
-    font-size: 2.2rem;
+    font-family: "Encode Sans Expanded";
+    font-size: 1.2rem;
     opacity: 1;
   }
   .koncerty__title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin-top: 0.3rem;
-    font-family: "Special Elite";
+    font-family: "Encode Sans Expanded";
     color: white;
     opacity: 1;
   }
@@ -61,29 +69,36 @@ const KoncertySectionStyles = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 3rem;
 
     svg {
       width: 30px;
+
       pointer-events: none;
     }
     .next,
     .prev {
-      margin: 0 0.5rem;
+      margin: 0 3rem;
       width: fit-content;
-      background-color: rgba(100, 100, 100, 0.5);
-
+      transition-duration: 500ms;
       padding: 0.5rem 2rem;
       border-radius: 8px;
       cursor: pointer;
     }
   }
   .next:hover {
-    color: purple;
     transition-duration: 500ms;
+    opacity: 1;
+
+    color: #b946ea;
+    transform: scale(1.2);
   }
   .prev:hover {
-    color: purple;
     transition-duration: 500ms;
+    opacity: 1;
+
+    color: #b946ea;
+    transform: scale(1.2);
   }
   .fade-enter {
     opacity: 0;
@@ -92,7 +107,7 @@ const KoncertySectionStyles = styled.div`
   .fade-enter-active {
     opacity: 1;
     transform: scale(1);
-    transition: 250ms ease-in opacity;
+    transition: 250ms ease opacity;
     transition-property: opacity, transform;
   }
   .fade-exit {
@@ -101,14 +116,14 @@ const KoncertySectionStyles = styled.div`
   }
   .fade-exit-active {
     opacity: 0;
-    transform: scale(0.96);
-    transition: 250ms ease-in opacity;
+    transform: scale(0.86);
+    transition: 250ms ease opacity;
     transition-property: opacity, transform;
   }
 `;
 export const KoncertyBg = styled.div`
   position: absolute;
-  top: 3rem;
+  top: 0rem;
   right: 0;
   bottom: 0;
   left: 0;
@@ -132,6 +147,11 @@ export const VideoBg = styled.video`
 export default function Koncerty() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeSlide = koncerty[activeIndex];
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
 
   function handlePrev() {
     if (activeIndex <= 0) {
@@ -148,50 +168,59 @@ export default function Koncerty() {
     }
   }
   return (
-    <KoncertySectionStyles>
-      <KoncertyBg>
-        <VideoBg autoPlay loop muted src={Video} type="video/mp4" />
-      </KoncertyBg>
-      <div className="container">
-        <SectionTitle heading="Koncerty" subheading="zobacz gdzie gramy:" />
-        <div className="koncerty__wrapper">
-          <SwitchTransition>
-            <CSSTransition key={activeSlide.id} timeout={300} classNames="fade">
-              <div className="koncerty__info">
-                <div className="koncerty__desc">
-                  <PText>{activeSlide.desc}</PText>
+    <>
+      <Sidebar isOpen={isOpen} toggle={toggle} />
+      <NavMenu toggle={toggle} />
+      <KoncertySectionStyles>
+        <KoncertyBg>
+          <VideoBg autoPlay loop muted src={Video} type="video/mp4" />
+        </KoncertyBg>
+        <div className="container">
+          <SectionTitle heading="Koncerty" subheading="zobacz gdzie gramy:" />
+          <div className="koncerty__wrapper">
+            <SwitchTransition>
+              <CSSTransition
+                key={activeSlide.id}
+                timeout={300}
+                classNames="fade"
+              >
+                <div className="koncerty__info">
+                  <div className="koncerty__desc">
+                    <PText>{activeSlide.desc}</PText>
+                  </div>
+                  <h2 className="koncerty__name">{activeSlide.name}</h2>
+                  <p className="koncerty__title">
+                    {activeSlide.title}
+                    <br />
+                    {activeSlide.org}
+                  </p>
                 </div>
-                <h2 className="koncerty__name">{activeSlide.name}</h2>
-                <p className="koncerty__title">
-                  {activeSlide.title}
-                  <br />
-                  {activeSlide.org}
-                </p>
-              </div>
-            </CSSTransition>
-          </SwitchTransition>
-        </div>
-        <div className="arrows">
-          <div
-            className="prev"
-            onClick={handlePrev}
-            role="button"
-            tabIndex={0}
-            onKeyDown={handlePrev}
-          >
-            <MdArrowBack />
+              </CSSTransition>
+            </SwitchTransition>
           </div>
-          <div
-            className="next"
-            onClick={handleNext}
-            role="button"
-            tabIndex={0}
-            onKeyDown={handleNext}
-          >
-            <MdArrowForward />
+          <div className="arrows">
+            <div
+              className="prev"
+              onClick={handlePrev}
+              role="button"
+              tabIndex={0}
+              onKeyDown={handlePrev}
+            >
+              <MdArrowBack />
+            </div>
+            <div
+              className="next"
+              onClick={handleNext}
+              role="button"
+              tabIndex={0}
+              onKeyDown={handleNext}
+            >
+              <MdArrowForward />
+            </div>
           </div>
         </div>
-      </div>
-    </KoncertySectionStyles>
+      </KoncertySectionStyles>
+      <ContactBanner />
+    </>
   );
 }
