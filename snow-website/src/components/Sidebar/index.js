@@ -65,7 +65,7 @@ const Sidebar = ({ isOpen, toggle }) => {
           <SidebarLink to="/Koncerty" onClick={toggle}>
             Koncerty
           </SidebarLink>
-          <SidebarLink to="/Kontakt" onClick={toggle}>
+          <SidebarLink to="/Contact" onClick={toggle}>
             Kontakt
           </SidebarLink>
         </SidebarMenu>

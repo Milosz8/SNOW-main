@@ -20,7 +20,7 @@ const AboutSectionStyle = styled.div`
     margin: 0 auto;
   }
   img {
-    width: 90%;
+    width: 100%;
 
     object-fit: contain;
     border: 5px solid white;
@@ -39,9 +39,12 @@ const AboutSectionStyle = styled.div`
     max-width: 600px;
     margin: 1.5rem 0;
     margin-right: 3rem;
-    font-size: 1.5rem;
     line-height: 2rem;
     text-align: left;
+    p {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
   }
   .aboutSection_buttons {
     display: flex;
@@ -78,7 +81,6 @@ const AboutSectionStyle = styled.div`
     .para {
       margin: 0 auto;
       margin-top: 2rem;
-      font-size: 1.4rem;
     }
     img {
       width: 80%;
@@ -108,7 +110,7 @@ export default function AboutSection() {
             </p>
           </div>
           <div className="aboutSection_buttons">
-            <Button to="Koncerty" btnText="koncerty"></Button>
+            <Button btnLink="/Koncerty" btnText="koncerty"></Button>
             <Button btnLink="/About" btnText="więcej"></Button>
           </div>
         </div>

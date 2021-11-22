@@ -6,4 +6,21 @@
 }
 html {
   background: black;
+  scroll-behavior: smooth;
+}
+
+[data-scrollbar] {
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+.scroll-content {
+  background-color: black;
+}
+.scrollbar-track.scrollbar-track-y {
+  background: #b946ea;
+}
+.scrollbar-thumb-y {
+  color: black;
 }

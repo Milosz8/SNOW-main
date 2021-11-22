@@ -12,7 +12,7 @@ export const FooterWrap = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 1100px;
-  height: 400px;
+  height: 300px;
   margin: 0 auto;
 `;
 

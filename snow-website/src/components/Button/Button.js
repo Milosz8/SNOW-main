@@ -5,12 +5,12 @@ import styled from "styled-components";
 const ButtonStyle = styled.div`
   margin-top: 2rem;
   .button {
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     background-color: black;
     padding: 0.7rem 2rem;
     border-radius: 8px;
     display: inline-block;
-    border: 5px solid white;
+    border: 2px solid white;
     color: white;
     text-decoration: none;
     padding: 1rem;
@@ -22,7 +22,7 @@ const ButtonStyle = styled.div`
   .button:hover {
     transition-duration: 500ms;
     color: #b946ea;
-    transform: scale(1.1);
+    transform: scale(1.025);
   }
   @media only screen and (max-width: 768px) {
     font-size: 1.4rem;

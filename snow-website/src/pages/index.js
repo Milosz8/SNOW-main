@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
-import NavMenu from "../components/Navbar";
+
 import HeroSection from "../components/HeroSection";
 
 import AboutSection from "../components/AboutSection/AboutSection";
@@ -18,8 +17,6 @@ const Home = () => {
 
   return (
     <>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <NavMenu toggle={toggle} />
       <HeroSection />
       <AboutSection />
       <GalerySection />

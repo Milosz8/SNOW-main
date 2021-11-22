@@ -12,21 +12,23 @@ const SectionStyle = styled.section`
 
   .slide {
     opacity: 0;
-    filter: grayscale(0) blur(5px);
+    filter: grayscale(1) blur(15px);
     transition-duration: 5000ms;
+    transform: scale(0.8);
   }
   .slide.active {
     opacity: 1;
     transition-duration: 5000ms;
-    filter: grayscale(1) blur(0px);
-    transform: scale(1.08);
+    filter: grayscale(0) blur(0px);
+    transform: scale(1);
   }
   .imageStyle {
-    width: 90%;
+    width: 100%;
     border-radius: 20px;
     object-fit: cover;
     /* border: 5px solid white; */
     min-width: 260px;
+
     /* filter: grayscale(1) blur(1px); */
   }
   .right-arrow {
@@ -66,7 +68,7 @@ const SectionStyle = styled.section`
     color: purple;
   }
   @media only screen and (max-width: 768px) {
-    padding-top: 2rem;
+    padding-top: 4rem;
   }
 `;
 
@@ -95,7 +97,6 @@ export default function ImageSlider({ slides }) {
     <SectionStyle className="slider">
       <MdArrowBack className="left-arrow" onClick={prevSlide} />
       <MdArrowForward className="right-arrow" onClick={nextSlide} />
-      <MdArrowBack />
       {SliderData.map((slide, index) => {
         return (
           <div

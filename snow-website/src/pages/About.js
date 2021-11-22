@@ -1,8 +1,6 @@
 import AboutUsTitle from "../components/AboutSection/AboutUsTitle";
 
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
-import NavMenu from "../components/Navbar";
 
 import styled from "styled-components";
 import Button from "../components/Button/Button";
@@ -16,7 +14,7 @@ const AboutPageStyle = styled.div`
 
   color: white;
   .container {
-    padding-top: 80px;
+    padding-top: 8rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -38,7 +36,7 @@ const AboutPageStyle = styled.div`
     margin: 1rem 0;
     margin-right: 3rem;
     font-size: 1rem;
-    line-height: 1.8rem;
+    line-height: 1.5rem;
     text-align: left;
   }
   .aboutSection_buttons {
@@ -99,8 +97,8 @@ export default function About() {
 
   return (
     <>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <NavMenu toggle={toggle} />
+      {/* <Sidebar isOpen={isOpen} toggle={toggle} />
+      <NavMenu toggle={toggle} /> */}
       <AboutPageStyle>
         <div className="container">
           <div className="aboutSection_left">

@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { animateScroll as scroll } from "react-scroll";
-import { MdMenu, MdClose } from "react-icons/md";
+import { MdContentCopy, MdMenu } from "react-icons/md";
 import myImage from "../../images/SNOW.png";
 
 const NavMenuStyles = styled.nav`
@@ -106,13 +106,15 @@ const NavItem = styled.li`
 export default function NavMenu({ toggle }) {
   const [scrollNav, setScrollNav] = useState(false);
   const changeNav = () => {
-    if (window.scrollY >= 80) {
+    if (document.scrollY >= 80) {
       setScrollNav(true);
     } else {
       setScrollNav(false);
     }
   };
-
+  setInterval(() => {
+    console.log(document.pageXOffset);
+  }, 1000);
   useEffect(() => {
     window.addEventListener("scroll", changeNav);
   }, []);

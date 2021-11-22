@@ -8,12 +8,11 @@ import koncerty from "../components/Koncerty/koncerty";
 
 import Video from "../videos/snowvideo1.mp4";
 
-import Sidebar from "../components/Sidebar";
-import NavMenu from "../components/Navbar";
 import ContactBanner from "../components/Koncerty/ContactBanner";
 
 const KoncertySectionStyles = styled.div`
   padding: 6.5rem 0;
+  transition-duration: 5000ms;
 
   text-align: center;
 
@@ -169,8 +168,8 @@ export default function Koncerty() {
   }
   return (
     <>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <NavMenu toggle={toggle} />
+      {/* <Sidebar isOpen={isOpen} toggle={toggle} />
+      <NavMenu toggle={toggle} /> */}
       <KoncertySectionStyles>
         <KoncertyBg>
           <VideoBg autoPlay loop muted src={Video} type="video/mp4" />
